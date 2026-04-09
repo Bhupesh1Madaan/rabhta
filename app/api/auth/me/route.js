@@ -2,6 +2,8 @@ import { getCurrentUser } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { errorResponse, successResponse } from '@/lib/utils';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const payload = await getCurrentUser();
   if (!payload) return errorResponse('Not authenticated', 401);

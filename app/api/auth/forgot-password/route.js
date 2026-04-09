@@ -2,6 +2,8 @@ import { prisma } from '@/lib/db';
 import { errorResponse, successResponse, generateOTP } from '@/lib/utils';
 import { sendOTPEmail } from '@/lib/email';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request) {
   try {
     const { email } = await request.json();
