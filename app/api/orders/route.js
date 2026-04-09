@@ -3,6 +3,8 @@ import { requireAuth, requireAdmin } from '@/lib/auth';
 import { errorResponse, successResponse } from '@/lib/utils';
 import { sendOrderConfirmationEmail } from '@/lib/email';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request) {
   try {
     const user = await requireAuth(request);

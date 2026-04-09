@@ -4,6 +4,8 @@ import { errorResponse, successResponse } from '@/lib/utils';
 import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request) {
   try {
     const { email, password } = await request.json();

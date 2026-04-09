@@ -3,6 +3,8 @@ import { errorResponse, successResponse, generateOTP } from '@/lib/utils';
 import { sendOTPEmail } from '@/lib/email';
 import bcrypt from 'bcryptjs';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request) {
   try {
     const { name, email, password } = await request.json();

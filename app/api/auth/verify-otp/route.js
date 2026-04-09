@@ -1,6 +1,8 @@
 import { prisma } from '@/lib/db';
 import { errorResponse, successResponse } from '@/lib/utils';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request) {
   try {
     const { email, otp } = await request.json();
