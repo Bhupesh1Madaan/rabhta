@@ -2,6 +2,8 @@ import { prisma } from '@/lib/db';
 import { requireAdmin } from '@/lib/auth';
 import { errorResponse, successResponse, slugify } from '@/lib/utils';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request, { params }) {
   try {
     const { id } = await params;

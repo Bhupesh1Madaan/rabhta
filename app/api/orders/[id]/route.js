@@ -2,6 +2,8 @@ import { prisma } from '@/lib/db';
 import { requireAuth, requireAdmin } from '@/lib/auth';
 import { errorResponse, successResponse } from '@/lib/utils';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request, { params }) {
   try {
     const user = await requireAuth(request);
