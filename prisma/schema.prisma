@@ -1,0 +1,140 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  password      String
+  emailVerified Boolean   @default(false)
+  role          String    @default("customer") // "customer" | "admin"
+  phone         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  addresses     Address[]
+  orders        Order[]
+  otps          OTP[]
+}
+
+model OTP {
+  id        String   @id @default(cuid())
+  email     String
+  code      String
+  purpose   String   // "verify_email" | "reset_password"
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user      User?    @relation(fields: [email], references: [email])
+}
+
+model Address {
+  id         String  @id @default(cuid())
+  userId     String
+  name       String
+  line1      String
+  line2      String?
+  city       String
+  state      String
+  pincode    String
+  country    String  @default("India")
+  phone      String
+  isDefault  Boolean @default(false)
+  lat        Float?
+  lng        Float?
+
+  user       User    @relation(fields: [userId], references: [id])
+  orders     Order[]
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String
+  category    String
+  price       Float
+  salePrice   Float?
+  images      String   // JSON array of image URLs
+  sizes       String   // JSON array: ["XS","S","M","L","XL","XXL"]
+  colors      String   // JSON array: [{name, hex}]
+  stock       String   // JSON: {size: {color: qty}}
+  tags        String?
+  isFeatured  Boolean  @default(false)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  orderItems  OrderItem[]
+}
+
+model Banner {
+  id         String   @id @default(cuid())
+  title      String
+  subtitle   String?
+  imageUrl   String
+  linkUrl    String?
+  buttonText String?
+  isActive   Boolean  @default(true)
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Offer {
+  id              String   @id @default(cuid())
+  code            String   @unique
+  description     String
+  discountType    String   // "percentage" | "flat"
+  discountValue   Float
+  minOrderAmount  Float?
+  maxUses         Int?
+  usedCount       Int      @default(0)
+  isActive        Boolean  @default(true)
+  expiresAt       DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  userId          String
+  addressId       String
+  items           String      // JSON array of {productId, name, image, size, color, qty, price}
+  subtotal        Float
+  discount        Float       @default(0)
+  offerCode       String?
+  deliveryFee     Float       @default(50)
+  total           Float
+  status          String      @default("placed") // placed|confirmed|shipped|out_for_delivery|delivered|cancelled
+  paymentStatus   String      @default("pending") // pending|paid|failed|refunded
+  paymentMethod   String      @default("card")
+  stripeSessionId String?
+  trackingNotes   String?     // JSON array of {status, note, timestamp}
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  user            User        @relation(fields: [userId], references: [id])
+  address         Address     @relation(fields: [addressId], references: [id])
+  orderItems      OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  productId String
+  size      String
+  color     String
+  qty       Int
+  price     Float
+
+  order     Order   @relation(fields: [orderId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
+}

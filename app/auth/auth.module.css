@@ -1,0 +1,235 @@
+/* Shared auth page styles */
+.authPage {
+  min-height: 100vh;
+  display: flex;
+  background: var(--color-bg);
+}
+
+.authCard {
+  width: 520px;
+  min-width: 520px;
+  padding: var(--space-3xl) var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.authCardCenter {
+  margin: 0 auto;
+  min-width: 0;
+}
+
+.authHeader {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.brandName {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 300;
+  letter-spacing: 8px;
+  color: var(--color-text);
+  text-decoration: none;
+  margin-bottom: var(--space-xl);
+}
+
+.emailIcon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.authTitle {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.authSubtitle {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.errorAlert {
+  background: rgba(155, 58, 58, 0.08);
+  border: 1px solid rgba(155, 58, 58, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  color: var(--color-error);
+  font-size: 0.875rem;
+}
+
+.forgotLink {
+  font-size: 0.78rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.forgotLink:hover { color: var(--color-primary-dark); }
+
+/* Password strength */
+.strengthBar {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.strengthSegment {
+  flex: 1;
+  height: 3px;
+  border-radius: 2px;
+  transition: background 0.3s ease;
+}
+
+/* Terms */
+.termsNote {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* Auth divider */
+.authDivider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+  color: var(--color-text-xlight);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.authDivider::before,
+.authDivider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border-light);
+}
+
+.authFooter {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.authLink {
+  color: var(--color-primary-dark);
+  font-weight: 600;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  transition: color var(--transition-fast);
+}
+
+.authLink:hover { color: var(--color-primary); }
+
+/* OTP */
+.otpContainer {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 8px 0;
+}
+
+.otpInput {
+  width: 52px;
+  height: 60px;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 500;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: all var(--transition-fast);
+  color: var(--color-text);
+  background: white;
+  font-family: var(--font-serif);
+}
+
+.otpInput:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15);
+}
+
+.resendText {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* Success box */
+.successBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 32px;
+  text-align: center;
+  background: rgba(74, 124, 89, 0.08);
+  border-radius: var(--radius-lg);
+  color: var(--color-success);
+  font-weight: 500;
+}
+
+/* Decor panel */
+.authDecor {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.authDecor img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.authDecorOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(30, 20, 12, 0.8) 0%, rgba(30, 20, 12, 0.3) 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 48px;
+}
+
+.authQuote {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: white;
+  line-height: 1.5;
+  max-width: 400px;
+  font-weight: 300;
+}
+
+.authQuote cite {
+  display: block;
+  font-size: 0.85rem;
+  font-style: normal;
+  color: var(--color-primary-light);
+  margin-top: 12px;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 900px) {
+  .authDecor { display: none; }
+  .authCard { width: 100%; min-width: 0; padding: 40px 24px; margin: 0 auto; max-width: 520px; }
+}

@@ -1,0 +1,147 @@
+.accountLayout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.sidebar {
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  position: sticky;
+  top: 100px;
+}
+
+.userProfile {
+  padding: 24px;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--color-surface);
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-text);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-family: var(--font-serif);
+}
+
+.userName {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.userEmail {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+}
+
+.navItem, .navItemActive {
+  padding: 12px 24px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.navItem:hover {
+  background: rgba(0,0,0,0.02);
+  color: var(--color-text);
+}
+
+.navItemActive {
+  color: var(--color-primary-dark);
+  font-weight: 500;
+  border-left-color: var(--color-primary);
+  background: rgba(201, 169, 110, 0.05);
+}
+
+.logoutBtn {
+  margin-top: 12px;
+  padding: 12px 24px;
+  border: none;
+  border-top: 1px solid var(--color-border);
+  background: white;
+  color: var(--color-error);
+  text-align: left;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: var(--font-sans);
+}
+
+.logoutBtn:hover {
+  background: rgba(231, 76, 60, 0.05);
+}
+
+/* Order Cards */
+.orderCard {
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.orderHeader {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 16px 20px;
+  gap: 20px;
+}
+
+.orderBody {
+  padding: 24px;
+}
+
+.orderItems {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.orderItem {
+  display: flex;
+  gap: 16px;
+}
+
+.tracking {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--color-border);
+}
+
+@media (max-width: 900px) {
+  .accountLayout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .orderHeader {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}

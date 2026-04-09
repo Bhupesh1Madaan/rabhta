@@ -1,0 +1,290 @@
+.lookbookSection {
+  position: relative;
+  width: 100%;
+  background: var(--bg-dark, #0a0a0a);
+  min-height: 100vh;
+  padding: 8vh 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1600px;
+  width: 95%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* LEFT SIDE - MODEL DISPLAY */
+.modelArea {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modelStage {
+  position: relative;
+  width: 35vw;
+  height: 75vh;
+  border-radius: 20px;
+  overflow: hidden;
+  background: radial-gradient(circle at center, rgba(30,30,30,1) 0%, rgba(10,10,10,1) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), inset 0 0 40px rgba(212, 175, 55, 0.05);
+}
+
+.modelGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25vw;
+  height: 25vw;
+  border-radius: 50%;
+  background: var(--color-primary, #d4af37);
+  filter: blur(120px);
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.baseModel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2; /* Subdued base model silhouette */
+  transition: opacity 0.5s ease;
+}
+
+.overlayImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95) translateY(20px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.activeOverlay {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateY(0);
+}
+
+.activeInfo {
+  margin-top: 2rem;
+  text-align: center;
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(20px);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  width: 35vw;
+  transform: translateY(-20px); /* Overlap slightly */
+  z-index: 2;
+}
+
+.categoryEyebrow {
+  display: block;
+  color: var(--color-primary, #d4af37);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.dressTitle {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+.shopBtn {
+  padding: 1rem 3rem;
+  letter-spacing: 1px;
+}
+
+
+/* RIGHT SIDE - WHEEL OF DRESSES */
+.wheelArea {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.wheelContainer {
+  position: relative;
+  width: 40vw;
+  height: 40vw;
+  max-width: 600px;
+  max-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wheelCenter {
+  position: absolute;
+  text-align: center;
+  z-index: 5;
+}
+
+.wheelCenter h2 {
+  font-size: 2rem;
+  color: #fff;
+  font-weight: 200;
+  margin: 0;
+}
+
+.wheelCenter p {
+  color: #a3a3a3;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+.wheelTrack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.15); /* Circular track line */
+  /* Optional: animated rotation of the track itself */
+  /* animation: slowSpin 60s linear infinite; */
+}
+
+/* Wrapper places items at correct coordinates around center */
+.wheelItemWrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Transform is handled by JS mapping */
+  z-index: 10;
+  transition: all 0.5s ease;
+}
+
+/* Actual thumb item */
+.wheelItem {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: #1a1a1a;
+  
+  /* Counter-rotate inside JS if track was spinning, or just static */
+}
+
+.wheelItemWrap:hover .wheelItem {
+  transform: scale(1.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+}
+
+.wheelItemActive .wheelItem {
+  transform: scale(1.3);
+  border-color: var(--color-primary, #d4af37);
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+}
+
+.thumbImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.wheelItemWrap:hover .thumbImage {
+  transform: scale(1.1);
+}
+
+/* Optional connection line to center */
+.activeConnection {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 18vw; /* Matches the translate offset minus item radius */
+  height: 1px;
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.8), transparent);
+  transform-origin: left center;
+  /* Not perfect depending on rotation math, mostly for concept */
+  display: none; 
+}
+
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .modelArea {
+    order: 2; /* Put wheel on top or model on top? Model on top is better */
+  }
+
+  .modelStage {
+    width: 60vw;
+    height: 60vh;
+  }
+
+  .activeInfo {
+    width: 60vw;
+  }
+
+  .wheelArea {
+    order: 1;
+    margin-bottom: 2rem;
+  }
+
+  .wheelContainer {
+    width: 80vw;
+    height: 80vw;
+    max-width: 400px;
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .modelStage {
+    width: 90vw;
+    height: 50vh;
+  }
+
+  .activeInfo {
+    width: 90vw;
+  }
+
+  .wheelContainer {
+    width: 300px;
+    height: 300px;
+  }
+
+  .wheelItem {
+    width: 80px;
+    height: 80px;
+  }
+}

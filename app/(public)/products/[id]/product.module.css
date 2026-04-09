@@ -1,0 +1,254 @@
+.productLayout {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 60px;
+  align-items: start;
+}
+
+/* Gallery */
+.gallery {
+  display: flex;
+  gap: 20px;
+  position: sticky;
+  top: calc(var(--nav-height) + 20px);
+}
+
+.thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 80px;
+}
+
+.thumbBtn {
+  width: 100%;
+  aspect-ratio: 3/4;
+  border: 1px solid transparent;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.thumbActive {
+  border-color: var(--color-primary);
+}
+
+.thumbBtn:hover {
+  opacity: 0.8;
+}
+
+.thumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mainImageWrap {
+  flex: 1;
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.badgeAbsolute {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+}
+
+/* Info */
+.info {
+  padding-top: 10px;
+}
+
+.category {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--color-text);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.pricing {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.priceSale {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--color-primary-dark);
+}
+
+.priceOriginal {
+  font-size: 1rem;
+  color: var(--color-text-xlight);
+  text-decoration: line-through;
+}
+
+.description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin-top: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Options */
+.optionsGroup {
+  margin-top: 24px;
+}
+
+.optionLabel {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-text-muted);
+}
+
+.sizeGuideBtn {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.colorOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.colorBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  padding: 2px;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.colorActive {
+  border-color: var(--color-text);
+}
+
+.colorSwatch {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.sizeOptions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.sizeBtn {
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  background: white;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-sans);
+}
+
+.sizeBtn:hover {
+  border-color: var(--color-text);
+}
+
+.sizeActive {
+  background: var(--color-text);
+  color: white;
+  border-color: var(--color-text);
+}
+
+/* Accordions */
+.accordions {
+  margin-top: 32px;
+  border-top: 1px solid var(--color-border);
+}
+
+.accordion {
+  border-bottom: 1px solid var(--color-border);
+  padding: 20px 0;
+}
+
+.accordionTitle {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.accordionContent {
+  margin-top: 12px;
+}
+
+@media (max-width: 1024px) {
+  .productLayout {
+    grid-template-columns: 1fr 340px;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .productLayout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .gallery {
+    flex-direction: column-reverse;
+    position: static;
+  }
+  .thumbnails {
+    flex-direction: row;
+    width: 100%;
+    overflow-x: auto;
+  }
+  .thumbBtn {
+    width: 60px;
+    flex-shrink: 0;
+  }
+  .sizeOptions {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
